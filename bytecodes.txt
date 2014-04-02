@@ -1,0 +1,14 @@
+Halt
+Lit
+Call
+Label
+Load
+Store
+Falsebranch
+Args
+Bop
+Goto
+Pop
+Read
+Return
+Write

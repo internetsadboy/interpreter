@@ -1,0 +1,5 @@
+LOAD 3
+LABEL ghost
+LIT 12
+FALSEBRANCH ghost
+CALL stuff
