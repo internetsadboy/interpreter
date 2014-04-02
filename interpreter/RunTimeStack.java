@@ -47,6 +47,14 @@ public class RunTimeStack {
 		push(returnValue);
 	}
 
+	// get size of the frame
+	// locate the startIndex of the most current frame
+	// return its value
+	public int getCurrentFrameIndex() {
+		int frameSize = framePointers.size();
+		return framePointers.get(frameSize-1);
+	}
+
 	// stores variables
 	public int store(int offset) {
 		return 0;
@@ -54,12 +62,14 @@ public class RunTimeStack {
 
 	// loads vars onto stack
 	public int load(int offset) {
-		return 0;
+		int item = runStack.get(offset);
+		push(item);
+		return item;
 	}
 
 	// used to push literals onto the stack e.g. LIT 5
 	public Integer push(Integer i) {
-		return 0;
+		return push((int)i);
 	}
 
 	// testing

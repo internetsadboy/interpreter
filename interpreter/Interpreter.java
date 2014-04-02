@@ -31,9 +31,9 @@ public class Interpreter {
 
 	void run() throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Program program = bcl.loadCodes();
-		program.printByteCodeInstances();
+		//program.printByteCodeInstances();
 		VirtualMachine vm = new VirtualMachine(program);
-		//vm.executeProgram();
+		vm.executeProgram();
 	}
 
 	public static void main(String args[]) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {

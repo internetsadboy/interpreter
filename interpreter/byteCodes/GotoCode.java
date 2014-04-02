@@ -1,5 +1,6 @@
 package interpreter.byteCodes;
 import interpreter.*;
+import java.util.*;
 
 // GOTO <label>
 public class GotoCode extends ByteCode {

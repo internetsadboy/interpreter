@@ -27,6 +27,7 @@ public class VirtualMachine {
 		while(isRunning) {
 			ByteCode code = program.getCode(pc);
 			code.exec(this);
+			//code.print();
 			pc++;
 		}
 	}
@@ -43,7 +44,20 @@ public class VirtualMachine {
 
 	// get and return top item from rts
 	public int peekRunStack() {
-		return runStack.get(0);
+		return runStack.peek();
+	}
+
+	// used to push literals onto the stack e.g. LIT 5
+	public Integer pushRunStack(Integer i) {
+		int castedInteger = (int)i;
+	  return runStack.push(castedInteger);
+	}
+
+	// get item from index n 
+	// push item from index n onto the top of the stack
+	// loads vars onto stack
+	public int loadRunStack(int offset) {
+		return runStack.load(offset);
 	}
 
 	// start new frame, offset indicates n positions from the top of the rts
@@ -52,5 +66,9 @@ public class VirtualMachine {
 	public void newFrameAtRunStack(int offset) {
 		runStack.newFrameAt(offset);
 		returnAddrs.push(pc);
+	}
+
+	public int getCurrentFrameRunStack() {
+		return runStack.getCurrentFrameIndex();
 	}
 }
