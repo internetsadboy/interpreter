@@ -21,7 +21,7 @@ public class Program {
 			String byteCode = byteCodeFile.get(i).get(0);
 			if(byteCode.equals("FALSEBRANCH") || byteCode.equals("GOTO") || byteCode.equals("RETURN") || byteCode.equals("CALL")) {
 				int address = 0;
-				String byteCodeArg = byteCodeFile.get(i).get(1);
+				String byteCodeArg = byteCodeFile.get(i).get(0); // was get(1)
 				for(int j = 0; j < byteCodeFile.size(); j++) {
 					String label = byteCodeFile.get(j).get(0);
 					if(label.equals("LABEL")) {

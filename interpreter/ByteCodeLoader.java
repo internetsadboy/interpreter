@@ -7,11 +7,13 @@ import java.io.*;
 
 // bcl will load the bytecodes from the file into the VM
 // read each bytecode statement
-// build an instance of the each corresponding bytecode
+// build an instance of each corresponding bytecode
 // add each bytecode class instance to the Program obj
 public class ByteCodeLoader extends Object {
 	
 	private String srcFile = "";
+	private Vector<ByteCode> byteCodeInstances = new Vector<ByteCode>();
+	private	Vector<Vector<String>> byteCodeStatements = new Vector<Vector<String>>();
 
 	public ByteCodeLoader(String programFile) throws IOException {
 		srcFile = System.getProperty("user.dir")+"/"+programFile;
@@ -28,8 +30,6 @@ public class ByteCodeLoader extends Object {
 		
 		BufferedReader in = new BufferedReader(new FileReader(srcFile));
 		String line = null;
-		Vector<ByteCode> byteCodeInstances = new Vector<ByteCode>();
-		Vector<Vector<String>> byteCodeStatements = new Vector<Vector<String>>();
 
 		// iterate through each bytecode statment from src file
 		while((line = in.readLine()) != null) {
@@ -44,7 +44,6 @@ public class ByteCodeLoader extends Object {
 				tempByteCodeStatement.add(byteCodeTokens.nextToken());
 			}
 			byteCodeStatements.add(tempByteCodeStatement);
-	
 			
 			// get bytecode name from current vector statment, static position 0 e.g. get(0) == HALT
 			// fetch bytecode classname from CodeTable

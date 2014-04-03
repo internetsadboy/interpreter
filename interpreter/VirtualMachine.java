@@ -14,6 +14,7 @@ public class VirtualMachine {
 	private Stack<Integer> returnAddrs; // corresponds to framePointers in rts
 	private boolean isRunning;
 	private Program program;
+	private boolean isDumping;
 
 	public VirtualMachine(Program prog) {
 		program = prog;
@@ -27,9 +28,22 @@ public class VirtualMachine {
 		while(isRunning) {
 			ByteCode code = program.getCode(pc);
 			code.exec(this);
-			//code.print();
 			pc++;
 		}
+	}
+
+	public void setDumpingOn(boolean yesOrNo) {
+		isDumping = yesOrNo;
+		System.out.print("DUMP ");
+		System.out.println(isDumping);
+	}
+
+	public boolean isDumping() {
+		return isDumping;
+	}
+
+	public void dumpRunStack() {
+		runStack.dump();
 	}
 
 	// pop and return item from the rts

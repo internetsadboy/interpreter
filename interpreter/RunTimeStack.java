@@ -6,6 +6,10 @@ public class RunTimeStack {
 	
 	private Stack<Integer> framePointers = new Stack<Integer>(); // changed from Stack<Integer>
 	private Vector<Integer> runStack = new Vector<Integer>();
+	private Stack<Vector<String>> byteCodesStack = new Stack<Vector<String>>();
+	private String srcFile;
+	private boolean dumpOn = false;
+
 
 	public RunTimeStack() {
 		framePointers.push(0);
@@ -13,7 +17,7 @@ public class RunTimeStack {
 
 	// dump the rts info for debugging
 	public void dump() {
-		// print out data in the rts
+		System.out.println(runStack.toString());
 	}
 
 	// returns the top item on the rts
@@ -28,13 +32,14 @@ public class RunTimeStack {
 
 	// add element to the top of the stack
 	public int push(int i) {
-		runStack.add(0, i);
+		runStack.add(0,i);
 		return i;
 	}
 
 	// start new frame, offset indicates n positions from the top of the rts
 	public void newFrameAt(int offset) {
-		framePointers.push(offset);
+		int topFrame = runStack.get(framePointers.size()-1);
+		framePointers.push(topFrame+offset);
 	}
 
 	// pop top frame when returning from a fxn

@@ -12,3 +12,4 @@ Pop
 Read
 Return
 Write
+Dump
